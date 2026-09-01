@@ -77,15 +77,14 @@ def deposit_money():
             account_holder.deposit(deposit_amount)
             print(f"Your deposit amount of {deposit_amount} has been added to your account")
 
-        else:
-            print("Account not found")
-            break
-        end_deposits=input("Would you like to add more deposits? [y/n]")
-        if end_deposits=="n":
-            print("Yay, Your deposit has been added!")
-            break
-        else:
-            continue
+            end_deposits = input("Would you like to add more deposits? [y/n]")
+            if end_deposits == "n":
+                print("Yay, Your deposit has been added!")
+                break
+            else:
+                continue
+    else:
+        print("Account not found")
     get_bank_data()
 
 def withdraw_money():
