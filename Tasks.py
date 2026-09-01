@@ -1,5 +1,5 @@
 
-from storage import update_bank_data, bank_database
+from storage import get_bank_data, bank_database
 class BankAccount:
 
     bank_name = "Linear Finance"
@@ -45,9 +45,9 @@ def valid_amount(prompt:str)->float:
             print("Please enter a number between 0 and 1000000")
 def create_bank_account():
     while True:
-        account_holder=input("Please enter your name: ")
-        balance=float(input("Please enter your balance: "))
-        number=int(input("Please enter your account number: "))
+        account_holder=input("Please enter your name: ").title()
+        balance=valid_amount("Please enter your balance: ")
+        number=valid_number("Please enter your account number: ")
 
         bank_database.append(BankAccount(account_holder,balance,number))
 
@@ -57,11 +57,11 @@ def create_bank_account():
             break
         else:
             continue
-    update_bank_data(bank_database)
-    return bank_database(BankAccount(account_holder,balance,number))
+    get_bank_data()
+    return bank_database
 
 def view_account():
-    account_lookup=input("Please enter your account number: ")#
+    account_lookup=valid_amount("Please enter your account number: ")
     for account in bank_database:
         if account.account_number==account_lookup:
             print(f"Account holder: {account.holder}\nAccount number: {account.account_number}\nBalance: {account.balance}")
@@ -71,9 +71,9 @@ def view_account():
 
 def deposit_money():
     account_holder = view_account()
-    while True:
-        if account_holder:
-            deposit_amount=float(input("Please enter your deposit amount: "))
+    if account_holder:
+        while True:
+            deposit_amount=valid_amount("Please enter your deposit amount: ")
             account_holder.deposit(deposit_amount)
             print(f"Your deposit amount of {deposit_amount} has been added to your account")
 
@@ -89,20 +89,20 @@ def deposit_money():
 
 def withdraw_money():
     account_holder=view_account()
-    while True:
-        if account_holder:
-            withdraw_amount=float(input("Please enter your withdraw amount: "))
+    if account_holder:
+        while True:
+            withdraw_amount=valid_amount("Please enter your withdraw amount: ")
             account_holder.withdraw(withdraw_amount)
-            print(f"Your withdraw amount of {withdraw_amount} has been added to your account")
-        else:
-            print("Account not found")
-            break
-        end_deposits = input("Would you like to add more deposits? [y/n]").lower()
-        if end_deposits == "n":
-            print("Yay, Your deposit has been added!")
-            break
-        else:
-            continue
+            print(f"An amount of {withdraw_amount} has been withdrawn to your account")
+
+            end_deposits = input("Would you like to withdraw more money? [y/n]").lower()
+            if end_deposits == "n":
+                print("Yay, Your money should be with you any moment from now!")
+                break
+            else:
+                continue
+    else:
+        print("Account not found")
     get_bank_data()
 
 def check_balance():
@@ -110,7 +110,7 @@ def check_balance():
     while True:
         if account_holder:
             print(f"Total Balance: {account_holder.balance}")
+            break
         else:
             print("Account not found")
             break
-
