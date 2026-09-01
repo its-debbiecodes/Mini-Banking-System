@@ -64,6 +64,7 @@ def view_account():
     account_lookup=input("Please enter your account number: ")#
     for account in bank_database:
         if account.account_number==account_lookup:
+            print(f"Account holder: {account.holder}\nAccount number: {account.account_number}\nBalance: {account.balance}")
             return account
     print("Account not found")
     return None
