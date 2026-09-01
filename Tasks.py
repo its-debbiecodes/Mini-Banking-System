@@ -1,0 +1,44 @@
+
+from storage import update_bank_data, bank_database
+class BankAccount:
+
+    bank_name = "Linear Finance"
+    no_of_accounts = 0
+    total_bank_balance = 0
+
+    def __init__(self, name, balance,number):
+        self.holder = name
+        self.account_number= number
+        self.balance = balance
+        BankAccount.no_of_accounts += 1
+
+
+    def withdraw(self, amount):
+        self.balance -= amount
+        BankAccount.total_bank_balance -= amount
+
+    def deposit(self, amount):
+        self.balance += amount
+        BankAccount.total_bank_balance += amount
+
+def create_bank_account():
+    while True:
+        account_holder=input("Please enter your name: ")
+        balance=float(input("Please enter your balance: "))
+        number=int(input("Please enter your account number: "))
+
+        bank_database.append(BankAccount(account_holder,balance,number))
+
+        end_loop= input("Would you like to add more accounts? [y/n]")
+        if end_loop=="n":
+            print("Yay, Your account has been created!")
+            break
+        else:
+            continue
+    return bank_database(BankAccount(account_holder,balance,number))
+
+
+
+
+
+
