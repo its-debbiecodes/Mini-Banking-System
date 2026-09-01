@@ -42,6 +42,7 @@ def create_bank_account():
             break
         else:
             continue
+    update_bank_data(bank_database)
     return bank_database(BankAccount(account_holder,balance,number))
 
 
