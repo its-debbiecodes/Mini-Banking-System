@@ -3,6 +3,14 @@
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
+title= "===== MINI BANK =====".upper().center(100)
+options=[
+    "Add Account",
+    "View Account",
+    "Deposit Money",
+    "Withdraw Money",
+    "View balance"
+]
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
