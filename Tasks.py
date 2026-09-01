@@ -114,3 +114,6 @@ def check_balance():
         else:
             print("Account not found")
             break
+def exit_program(bank_name):
+    print(f"Thanks for banking with {bank_name}")
+    exit()
