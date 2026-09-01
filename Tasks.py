@@ -6,6 +6,13 @@ class BankAccount:
     no_of_accounts = 0
     total_bank_balance = 0
 
+    @classmethod
+    def show_bank_details(cls):
+        print(f"\n\033[45m{cls.bank_name}\033[0m")
+        print(f"\n\033[35mNumber of Accounts:{cls.no_of_accounts}\033[0m")
+        print(f"\n\033[35mTotal Bank Balance:{cls.total_bank_balance}\033[0m")
+
+
     def __init__(self, name, balance,number):
         self.holder = name
         self.account_number= number
