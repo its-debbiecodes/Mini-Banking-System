@@ -28,6 +28,21 @@ class BankAccount:
         self.balance += amount
         BankAccount.total_bank_balance += amount
 
+def valid_number(prompt:str)->int:
+    while True:
+        number=int(input(prompt))
+        if 0<=number<=10000:
+            return number
+        else:
+            print("Please enter a number between 0 and 10000")
+
+def valid_amount(prompt:str)->float:
+    while True:
+        number=float(input(prompt))
+        if 0<=number<=1000000:
+            return number
+        else:
+            print("Please enter a number between 0 and 1000000")
 def create_bank_account():
     while True:
         account_holder=input("Please enter your name: ")
