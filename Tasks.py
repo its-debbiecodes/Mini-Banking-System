@@ -81,5 +81,15 @@ def deposit_money():
         return None
 get_bank_data()
 
-
+def withdraw_money():
+    account_holder=view_account()
+    if account_holder:
+        withdraw_amount=float(input("Please enter your withdraw amount: "))
+        account_holder.withdraw(withdraw_amount)
+        print(f"Your withdraw amount of {withdraw_amount} has been added to your account")
+        return withdraw_amount
+    else:
+        print("Account not found")
+        return None
+get_bank_data()
 
