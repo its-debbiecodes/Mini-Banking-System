@@ -45,6 +45,13 @@ def create_bank_account():
     update_bank_data(bank_database)
     return bank_database(BankAccount(account_holder,balance,number))
 
+def view_account():
+    account_lookup=input("Please enter your account number: ")#
+    for account in bank_database:
+        if account.account_number==account_lookup:
+            return account
+    print("Account not found")
+    return None
 
 
 
