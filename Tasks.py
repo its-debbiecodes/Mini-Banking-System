@@ -11,6 +11,8 @@ class BankAccount:
         print(f"\n\033[45m{cls.bank_name}\033[0m")
         print(f"\n\033[35mNumber of Accounts:{cls.no_of_accounts}\033[0m")
         print(f"\n\033[35mTotal Bank Balance:{cls.total_bank_balance}\033[0m")
+        return classmethod
+
 
 
     def __init__(self, name, balance,number):
@@ -114,6 +116,6 @@ def check_balance():
         else:
             print("Account not found")
             break
-def exit_program(bank_name):
-    print(f"Thanks for banking with {bank_name}")
+def exit_program():
+    print(f"Thanks for banking with{BankAccount.bank_name}")
     exit()

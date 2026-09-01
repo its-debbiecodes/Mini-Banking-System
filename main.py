@@ -1,24 +1,35 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
+from Tasks import create_bank_account,view_account,withdraw_money,deposit_money,check_balance,exit_program,BankAccount
 title= "===== MINI BANK =====".upper().center(100)
 options=[
-    "Add Account",
-    "View Account",
-    "Deposit Money",
-    "Withdraw Money",
-    "View balance"
+    "Add Account (press a)",
+    "View Account (press v)",
+    "Deposit Money (press d)",
+    "Withdraw Money (press w)",
+    "View Balance (press v)",
+    "Exit (press e)"
 ]
+def main():
+    BankAccount.show_bank_details()
+    while True:
+        print(f"\n\033[35m{title}\033[0m\n")
+        print(f"\033[32m{"-" * 50}\033[0m")
+        for index,option in enumerate(options,start=1):
+            print(f"\n\033[32m{index}. {option:<20}\033[0m")
+        print(f"\033[32m{"-" * 50}\033[0m")
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+        user_choice = input("\n\033[30mChoose an option:\033[0m ").lower()
+        if user_choice == "a":
+            create_bank_account()
+        elif user_choice == "v":
+            view_account()
+        elif user_choice == "d":
+            deposit_money()
+        elif user_choice == "w":
+            withdraw_money()
+        elif user_choice == "v":
+            check_balance()
+        elif user_choice == "e":
+            exit_program()
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+if __name__ == "__main__":
+    main()
