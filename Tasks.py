@@ -104,7 +104,14 @@ def withdraw_money():
             break
         else:
             continue
+    get_bank_data()
 
-
-get_bank_data()
+def check_balance():
+    account_holder=view_account()
+    while True:
+        if account_holder:
+            print(f"Total Balance: {account_holder.balance}")
+        else:
+            print("Account not found")
+            break
 
