@@ -70,16 +70,23 @@ def view_account():
     return None
 
 def deposit_money():
-    account_holder=view_account()
-    if account_holder:
-        deposit_amount=float(input("Please enter your deposit amount: "))
-        account_holder.deposit(deposit_amount)
-        print(f"Your deposit amount of {deposit_amount} has been added to your account")
-        return deposit_amount
-    else:
-        print("Account not found")
-        return None
-get_bank_data()
+    account_holder = view_account()
+    while True:
+        if account_holder:
+            deposit_amount=float(input("Please enter your deposit amount: "))
+            account_holder.deposit(deposit_amount)
+            print(f"Your deposit amount of {deposit_amount} has been added to your account")
+
+        else:
+            print("Account not found")
+            break
+        end_deposits=input("Would you like to add more deposits? [y/n]")
+        if end_deposits=="n":
+            print("Yay, Your deposit has been added!")
+            break
+        else:
+            continue
+    get_bank_data()
 
 def withdraw_money():
     account_holder=view_account()
