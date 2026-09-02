@@ -116,6 +116,13 @@ def check_balance():
         else:
             print("Account not found")
             break
+def delete_account():
+    account_holder=view_account()
+    if account_holder:
+        bank_database.remove(account_holder)
+    else:
+        print("Account not found")
+                                           
 def exit_program():
     print(f"Thanks for banking with{BankAccount.bank_name}")
     exit()
