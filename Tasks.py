@@ -30,13 +30,12 @@ class BankAccount:
         self.balance += amount
         BankAccount.total_bank_balance += amount
 
-def valid_number(prompt:str)->int:
-    while True:
-        number=int(input(prompt))
-        if 0<=number<=10000:
-            return number
-        else:
-            print("Please enter a number between 0 and 10000")
+def get_next_number():
+    highest_number= 1000
+    for account in bank_database:
+        if account.account_number > highest_number:
+            highest_number = account.account_number
+    return highest_number + 1
 
 def valid_amount(prompt:str)->float:
     while True:
