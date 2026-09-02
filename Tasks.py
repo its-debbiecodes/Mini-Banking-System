@@ -1,26 +1,20 @@
 
-from storage import get_bank_data, bank_database
 class BankAccount:
 
     bank_name = "Linear Finance"
     no_of_accounts = 0
     total_bank_balance = 0
-
     @classmethod
     def show_bank_details(cls):
         print(f"\n\033[45m{cls.bank_name}\033[0m")
         print(f"\n\033[35mNumber of Accounts:{cls.no_of_accounts}\033[0m")
         print(f"\n\033[35mTotal Bank Balance:{cls.total_bank_balance}\033[0m")
-        return classmethod
-
 
 
     def __init__(self, name, balance,number):
         self.holder = name
-        self.account_number= number
         self.balance = balance
-        BankAccount.no_of_accounts += 1
-
+        self.account_number = number
 
     def withdraw(self, amount):
         self.balance -= amount
@@ -61,28 +55,27 @@ def valid_number(prompt:str)->int:
 bank_database =[]
 def create_bank_account():
     while True:
-        account_holder=input("Please enter your name: ").title()
+        auto_account_number = get_next_number()
+        account_holder=input("Please enter your your first and last name: ").title()
         balance=valid_amount("Please enter your balance: ")
         new_account=BankAccount(account_holder,balance,auto_account_number)
         bank_database.append(new_account)
         BankAccount.no_of_accounts += 1
         print(f"Great! Your new account number is {new_account.account_number}")
 
-        bank_database.append(BankAccount(account_holder,balance,number))
 
-        end_loop= input("Would you like to add more accounts? [y/n]")
+        end_loop= input("Would you like to add more accounts? [y/n] ").lower()
         if end_loop=="n":
-            print("Yay, Your account has been created!")
+            print("🎉 Yay, Your account has been created!")
             break
         else:
             continue
-    get_bank_data()
     return bank_database
 
 def view_account():
-    account_lookup=valid_amount("Please enter your account number: ")
+    account_lookup=valid_number("Please enter your account number: ")
     for account in bank_database:
-        if account.account_number==account_lookup:
+        if account_lookup==account.account_number:
             print(f"Account holder: {account.holder}\nAccount number: {account.account_number}\nBalance: {account.balance}")
             return account
     print("Account not found")
@@ -96,7 +89,7 @@ def deposit_money():
             account_holder.deposit(deposit_amount)
             print(f"Your deposit amount of {deposit_amount} has been added to your account")
 
-            end_deposits = input("Would you like to add more deposits? [y/n]")
+            end_deposits = input("Would you like to add more deposits? [y/n] ").lower()
             if end_deposits == "n":
                 print("Yay, Your deposit has been added!")
                 break
@@ -104,17 +97,20 @@ def deposit_money():
                 continue
     else:
         print("Account not found")
-    get_bank_data()
 
 def withdraw_money():
     account_holder=view_account()
     if account_holder:
         while True:
+            print(account_holder.balance)
             withdraw_amount=valid_amount("Please enter your withdraw amount: ")
-            account_holder.withdraw(withdraw_amount)
-            print(f"An amount of {withdraw_amount} has been withdrawn to your account")
+            if withdraw_amount > account_holder.balance:
+                print("Your withdraw amount cannot be greater than your balance")
+            else:
+                account_holder.withdraw(withdraw_amount)
+                print(f"An amount of {withdraw_amount} has been withdrawn to your account")
 
-            end_deposits = input("Would you like to withdraw more money? [y/n]").lower()
+            end_deposits = input("Would you like to withdraw more money? [y/n] ").lower()
             if end_deposits == "n":
                 print("Yay, Your money should be with you any moment from now!")
                 break
@@ -122,7 +118,6 @@ def withdraw_money():
                 continue
     else:
         print("Account not found")
-    get_bank_data()
 
 def check_balance():
     account_holder=view_account()
