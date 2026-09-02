@@ -11,6 +11,7 @@ options=[
 def main():
     load_bank_data()
     BankAccount.show_bank_details()
+    print(f"\n\033[35m{title}\033[0m\n")
     while True:
         print(f"\n\033[35m{title}\033[0m\n")
         print(f"\033[32m{"-" * 50}\033[0m")
