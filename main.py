@@ -21,6 +21,7 @@ def main():
         user_choice = input("\n\033[30mChoose an option:\033[0m ").lower()
         if user_choice == "a":
             create_bank_account()
+            save_bank_data()
         elif user_choice == "v":
             view_account()
         elif user_choice == "d":
