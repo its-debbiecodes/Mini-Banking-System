@@ -135,9 +135,8 @@ def delete_account():
     account_holder=view_account()
     if account_holder:
         bank_database.remove(account_holder)
-    else:
-        print("Account not found")
-                                           
+        BankAccount.no_of_accounts -= 1
+        print(f"Your account has been deleted!")
 def exit_program():
     print(f"Thanks for banking with{BankAccount.bank_name}")
     exit()
