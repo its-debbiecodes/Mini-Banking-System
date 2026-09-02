@@ -40,11 +40,26 @@ def valid_number(prompt:str)->int:
 
 def valid_amount(prompt:str)->float:
     while True:
-        number=float(input(prompt))
-        if 0<=number<=1000000:
-            return number
-        else:
+        try:
+            number=float(input(prompt))
+            if 0<=number<=1000000:
+                return number
+            else:
+                print("Please enter a number between 0 and 1000000")
+        except ValueError:
             print("Please enter a number between 0 and 1000000")
+
+def valid_number(prompt:str)->int:
+    while True:
+        try:
+            number=int(input(prompt))
+            if 0<=number<=1000000:
+                return number
+            else:
+                print("Please enter a numeric value between 0 and 1000000")
+        except ValueError:
+            print("Please enter a numeric value between 0 and 1000000")
+bank_database =[]
 def create_bank_account():
     while True:
         account_holder=input("Please enter your name: ").title()
