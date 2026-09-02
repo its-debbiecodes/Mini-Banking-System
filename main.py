@@ -9,6 +9,7 @@ options=[
     "Exit (press e)"
 ]
 def main():
+    load_bank_data()
     BankAccount.show_bank_details()
     while True:
         print(f"\n\033[35m{title}\033[0m\n")
