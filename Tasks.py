@@ -63,7 +63,10 @@ def create_bank_account():
     while True:
         account_holder=input("Please enter your name: ").title()
         balance=valid_amount("Please enter your balance: ")
-        number=valid_number("Please enter your account number: ")
+        new_account=BankAccount(account_holder,balance,auto_account_number)
+        bank_database.append(new_account)
+        BankAccount.no_of_accounts += 1
+        print(f"Great! Your new account number is {new_account.account_number}")
 
         bank_database.append(BankAccount(account_holder,balance,number))
 
